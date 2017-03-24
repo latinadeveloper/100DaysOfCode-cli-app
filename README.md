@@ -17,6 +17,15 @@ I created this cli to explore those questions.
 
 ## Installation
 
+## Twitter Account
+You must create a twitter account at [Twitter Apps] (https://apps.twitter.com/) for this to work.
+Create a file named doNotCommit.rb under the config file directory.
+This file will be used to save the consumer key which you will want to keep to yourself.
+
+CONSUMER_KEY = *your consumer key here as a string*
+CONSUMER_SECRET = *your consumer secret here as a string*
+
+
 
 ## Usage
 
