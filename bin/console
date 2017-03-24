@@ -2,4 +2,5 @@
 
 require_relative '../config/environment'
 
-DaysOfCode::CLI.new.start
+require "irb"
+IRB.start
