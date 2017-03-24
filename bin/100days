@@ -2,4 +2,4 @@
 
 require_relative '../config/environment'
 
-DaysOfCode::CLI.new.start
+DaysOfCode::CLI.new.call

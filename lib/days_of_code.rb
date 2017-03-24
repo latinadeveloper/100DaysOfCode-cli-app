@@ -3,3 +3,4 @@ end
 
 
 require_relative "days_of_code/cli"
+require_relative "days_of_code/twitter.rb"
