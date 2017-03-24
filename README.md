@@ -1,5 +1,5 @@
 # days_of_code
-100 Days of Code stats and data
+100 Days of Code Stats and Data
 
 #100 Days Of Code Data
 
