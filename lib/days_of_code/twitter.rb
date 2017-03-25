@@ -13,6 +13,7 @@ attr_reader :consumer
   def get_twitter
     # gets the request back from twitter
     response = consumer.request(:get, "https://api.twitter.com/1.1/search/tweets.json?q=%40latinadeveloper")
+    result = JSON.parse(response.body)
   end
 end
 
