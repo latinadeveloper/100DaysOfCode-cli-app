@@ -5,7 +5,8 @@ class DaysOfCode::CLI
     puts "Welcome to 100 Days Of Code Stats"
     puts "Enter number for selection"
     puts "1. For the latest 15 tweets"
-    # input = get.strip
+create_tweet
+latest_15_tweets
   end
 
   def menu
@@ -13,7 +14,7 @@ class DaysOfCode::CLI
     when 1
       latest_15_tweets
     when 2
-      #exit
+      return
     end
   end
 
@@ -25,9 +26,13 @@ class DaysOfCode::CLI
 
 
   def latest_15_tweets
-    DaysOfCode::Tweets.all.each do |tweet|
-       puts "#{tweet.text}  "
+    puts "                   The latest 15 tweets                  ".colorize(:color => :black, :background => :magenta, :mode => :bold)
+    DaysOfCode::Tweets.all.each.with_index do |tweet, index|
+       puts "#{index + 1}".colorize(:light_blue) + " #{tweet.text}"
      end
-
   end
+
+  def 50_recent_users
+  end
+
 end
