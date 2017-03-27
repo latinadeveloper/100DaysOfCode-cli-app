@@ -6,18 +6,22 @@ class DaysOfCode::CLI
     puts "Enter number for selection"
     puts "1. For the latest 15 tweets"
 
-    input = get.strip
+    # input = get.strip
   end
 
   def menu
     case input
     when 1
-      #last 15 tweets
+      latest_15_tweets
     when 2
       #exit
-
+    end
   end
 
+
+  def latest_15_tweets
+
+  end
 
 
 end
