@@ -14,13 +14,10 @@ class DaysOfCode::Twitter
     result = JSON.parse(response.body) # <-- response back from twitter
   end
 
-  def create_tweet
-    tweet = twitter.new.get_twitter["statuses"]
-    Tweets.create_from_tweet(tweet_array)
-  end
 
 
 end
+
 
 
 

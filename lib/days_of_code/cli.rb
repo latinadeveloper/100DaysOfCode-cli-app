@@ -19,9 +19,13 @@ class DaysOfCode::CLI
   end
 
 
-  def latest_15_tweets
-
+  def create_tweet
+    tweet = Twitter.new.get_twitter["statuses"]
+    Tweets.create_from_tweet(tweet)
   end
 
 
+  def latest_15_tweets
+
+  end
 end
