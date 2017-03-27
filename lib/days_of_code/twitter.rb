@@ -15,13 +15,12 @@ class DaysOfCode::Twitter
   end
 
   def create_tweet
-    tweet = twitter.new.get_twitter[]"statuses"]
+    tweet = twitter.new.get_twitter["statuses"]
     Tweets.create_from_tweet(tweet_array)
   end
 
 
 end
-
 
 
 
