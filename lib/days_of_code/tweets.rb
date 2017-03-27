@@ -8,7 +8,10 @@ attr_accessor :screen_name, :location, :created_at, :text  #datauserid???
   def initialize(tweet_hash)
     @@all_tweets << self
 
-
+    @screen_name = tweet_hash["user"]["screen_name"]
+    @location = tweet_hash["user"]["location"]
+    @text = tweet_hash["text"]
+    @created_at = tweet_hash["created_at"]
   end
 
   def self.create_from_tweet(tweet_array)

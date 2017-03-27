@@ -5,8 +5,6 @@ class DaysOfCode::CLI
     puts "Welcome to 100 Days Of Code Stats"
     puts "Enter number for selection"
     puts "1. For the latest 15 tweets"
-    create_tweet
-    latest_15_tweets
     # input = get.strip
   end
 
@@ -28,7 +26,7 @@ class DaysOfCode::CLI
 
   def latest_15_tweets
     DaysOfCode::Tweets.all.each do |tweet|
-       puts "#{tweet.text}"
+       puts "#{tweet.text}  "
      end
 
   end
