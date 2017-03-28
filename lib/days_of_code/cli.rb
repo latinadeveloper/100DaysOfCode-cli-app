@@ -22,9 +22,15 @@ class DaysOfCode::CLI
       puts "How many recent users do you want to see from 1 to 15"
       request = gets.to_i
       recent_users(request)
+
     end
 
-    # Do you want another option?
+    puts "----------------------------"
+    puts " Do you want another option?"
+    input = gets.downcase
+    if input == "no" || input == "n"
+      return
+    end
 
   end
 
