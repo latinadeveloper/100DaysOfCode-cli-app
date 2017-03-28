@@ -32,7 +32,19 @@ latest_15_tweets
      end
   end
 
-  def 50_recent_users
+  def recent_users
+    abc_array = DaysOfCode::Tweets.all[0..9].collect do |tweet|
+      tweet.screen_name
+    end
+
+    abc_array.each do |abc|
+      puts abc
+      end
   end
+
+
+
+
+
 
 end
