@@ -10,7 +10,7 @@
 
     def get_twitter
       # gets the request back from twitter
-      response = consumer.request(:get, "https://api.twitter.com/1.1/search/tweets.json?result_type=recent&q=%23100DaysOfCode")
+      response = consumer.request(:get, "https://api.twitter.com/1.1/search/tweets.json?count=100&result_type=recent&q=%23100DaysOfCode")
       result = JSON.parse(response.body) # <-- response back from twitter
     end  # { "statuses": [ {TH}, {TH}, ....], "search_metadata": {...} }
 
