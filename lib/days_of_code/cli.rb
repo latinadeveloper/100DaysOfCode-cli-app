@@ -54,10 +54,7 @@ class DaysOfCode::CLI
 
 
 
-def all_tweets
 
-
-end
 
 
   def create_tweet
