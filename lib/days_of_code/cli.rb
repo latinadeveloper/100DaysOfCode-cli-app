@@ -17,8 +17,6 @@ class DaysOfCode::CLI
       puts "1. For the latest 15 tweets."   #get_twitter
       puts "2. To view a list of recent users in alphabetical order."
       puts "3. To clear current list and refresh to latest 15 tweets."
-      # puts "4. Request all since the challenge started"   #get_more_tweets
-      #puts " Rank of users have the most tweets"
       puts "Type exit to end program."
       print ":".colorize(:color => :black, :background => :yellow, :mode => :blink)
         input = gets.strip
@@ -56,8 +54,10 @@ class DaysOfCode::CLI
 
 
   def create_tweet
-    tweet = DaysOfCode::Twitter.new.get_more_tweets
+    twitter = DaysOfCode::Twitter.new
+    tweet = twitter.get_more_tweets
     DaysOfCode::Tweets.create_from_tweet(tweet)
+    twitter.save  #calls method to save
   end
 
 
@@ -70,7 +70,7 @@ class DaysOfCode::CLI
 
   def latest_15_tweets
     puts "- - - - - - - The latest 15 tweets - - - - - - -".colorize(:color => :black, :background => :magenta, :mode => :bold)
-    DaysOfCode::Tweets.all[0...15].each.with_index do |tweet, index| 
+    DaysOfCode::Tweets.all[0...15].each.with_index do |tweet, index|
        puts "#{index + 1}".colorize(:light_blue) + " #{tweet.text}"
      end
   end
