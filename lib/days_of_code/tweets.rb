@@ -24,6 +24,12 @@ attr_accessor :screen_name, :location, :created_at, :text  #datauserid???
     @@all_tweets
   end
 
+  def self.clear_tweets
+    @@all_tweets.clear
+
+  end
+
+
 
 
 end

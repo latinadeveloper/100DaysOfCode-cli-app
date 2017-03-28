@@ -1,6 +1,5 @@
 class DaysOfCode::CLI
 
-
   def call
     create_tweet
     menu
@@ -11,25 +10,39 @@ class DaysOfCode::CLI
     loop do
       puts "----- Menu-----"
       puts "Welcome to 100 Days Of Code Stats"
-      puts "Enter number for selection"
+      puts "Enter number for selection."
       puts "   "
-      puts "1. For the latest 15 tweets"
-      puts "2. Request a number of recent users"
+      puts "1. For the latest 15 tweets."
+      puts "2. Request a number of recent users."
+      puts "3. To refresh latest tweets."
+      puts "Type exit to end program."
       print ":".colorize(:color => :black, :background => :yellow, :mode => :blink)
-        input = gets.to_i
+        input = gets.strip
 
+      optional_choice = true
 
       case input
-      when 1
+
+      when "1"
         latest_15_tweets
-      when 2
-        puts "How many recent users do you want to see from 1 to 15"
+      when "2"
+        puts "How many recent users do you want to see from 1 to 15?"
         request = gets.to_i
         recent_users(request)
+      when "3"
+        DaysOfCode::Tweets.clear_tweets
+        create_tweet
+
+      when "exit"
+        return
+      else
+        puts "Invalid choice"
+        optional_choice = false
+
       end
 
 
-      if !yes_or_no
+      if optional_choice && !yes_or_no
         return # ends
       end
 
@@ -50,7 +63,7 @@ class DaysOfCode::CLI
 
   def latest_15_tweets
     puts "                   The latest 15 tweets                  ".colorize(:color => :black, :background => :magenta, :mode => :bold)
-    DaysOfCode::Tweets.all.each.with_index do |tweet, index|
+    DaysOfCode::s.all.each.with_index do |tweet, index|
        puts "#{index + 1}".colorize(:light_blue) + " #{tweet.text}"
      end
   end
