@@ -45,19 +45,19 @@ class DaysOfCode::CLI
 
 
       if optional_choice && !yes_or_no
-        return # ends
+        return ### ends
       end
 
 
-    end # end of loop
-  end # end menu
+    end ### end of loop
+  end ### end menu
 
 
   def create_tweet
     twitter = DaysOfCode::Twitter.new
     tweet = twitter.get_more_tweets
     DaysOfCode::Tweets.create_from_tweet(tweet)
-    twitter.save  #calls method to save
+    # twitter.save  ###calls method to save
   end
 
 
@@ -84,6 +84,16 @@ class DaysOfCode::CLI
     abc_array.sort.each do |abc|
       puts abc
       end
+  end
+
+  def stats_user_tweets_count   ###count for each identical element
+    DaysOfCode::Tweets.all
+    counts = Hash.new(0)
+
+    DaysOfCode::Tweets.all.each do |tweet|
+      counts[tweet.screen_name] += 1
+    end
+
   end
 
 

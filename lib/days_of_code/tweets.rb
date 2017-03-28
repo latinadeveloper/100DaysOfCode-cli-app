@@ -1,6 +1,6 @@
-#tweet class where the tweets are called
+### tweet class where the tweets are called
 class DaysOfCode::Tweets
-attr_accessor :screen_name, :location, :created_at, :text  #datauserid???
+attr_accessor :screen_name, :location, :created_at, :text  ### atauserid???
 
   @@all_tweets = [ ]
 
@@ -13,10 +13,10 @@ attr_accessor :screen_name, :location, :created_at, :text  #datauserid???
     @created_at = tweet_hash["created_at"]
   end
 
-  def self.create_from_tweet(tweet_array) # [ {TH}, {TH}, ....]
+  def self.create_from_tweet(tweet_array) ### [ {TH}, {TH}, ....]
     tweet_array.each do |tweet_hash|
       self.new(tweet_hash)
-    end #[]
+    end ### []
   end
 
 
@@ -35,4 +35,4 @@ attr_accessor :screen_name, :location, :created_at, :text  #datauserid???
 end
 
 
-#DaysOfCode::Twitter.new.get_twitter["statuses"][0]["id"]   unique user id
+###DaysOfCode::Twitter.new.get_twitter["statuses"][0]["id"]   unique user id
