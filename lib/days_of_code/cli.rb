@@ -2,6 +2,8 @@ class DaysOfCode::CLI
 
 
   def call
+    create_tweet
+
     puts "Menu"
     puts "Welcome to 100 Days Of Code Stats"
     puts "Enter number for selection"
@@ -18,7 +20,8 @@ class DaysOfCode::CLI
       latest_15_tweets
     when 2
       puts "how many recent users do you want to see from 1 to 15"
-     request = gets.to_i
+      request = gets.to_i
+      recent_users(request)
     end
   end
 
