@@ -19,6 +19,7 @@
       search_result = get_twitter
       # { "statuses": [ {TH}, {TH}, ....], "search_metadata": {...} }
 
+
       3.times do
         @additional_searches += search_result["statuses"]   #== @additional_searches = ["statuses"]*** using += vs <<   << created array in away [[][]]
         #^ [ {TH}, {TH}, ....]

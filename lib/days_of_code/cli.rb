@@ -1,7 +1,7 @@
 class DaysOfCode::CLI
 
   def call
-    create_tweet
+
     menu
 
   end
@@ -13,10 +13,10 @@ class DaysOfCode::CLI
       puts "Welcome to 100 Days Of Code Stats"
       puts "Enter number for selection."
       puts "   "
-      puts "1. For the latest 15 0tweets."
+      puts "1. For the latest 15 tweets."   #get_twitter
       puts "2. Request a number of recent users."
       puts "3. To refresh latest tweets."
-      # puts "4. Request all since the challenge started"  #100daysofcode
+      # puts "4. Request all since the challenge started"   #get_more_tweets
       #puts " Rank of users have the most tweets"
       puts "Type exit to end program."
       print ":".colorize(:color => :black, :background => :yellow, :mode => :blink)
