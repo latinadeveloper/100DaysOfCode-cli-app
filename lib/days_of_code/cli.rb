@@ -8,13 +8,17 @@ class DaysOfCode::CLI
 
   def menu
 
-    puts "Menu"
+loop do
+    puts "----- Menu-----"
     puts "Welcome to 100 Days Of Code Stats"
     puts "Enter number for selection"
+    puts "   "
     puts "1. For the latest 15 tweets"
     puts "2. Request a number of recent users"
     print ":".colorize(:color => :black, :background => :yellow, :mode => :blink)
       input = gets.to_i
+
+
     case input
     when 1
       latest_15_tweets
@@ -22,17 +26,24 @@ class DaysOfCode::CLI
       puts "How many recent users do you want to see from 1 to 15"
       request = gets.to_i
       recent_users(request)
-
     end
 
-    puts "----------------------------"
+    puts " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
     puts " Do you want another option?"
     input = gets.downcase
     if input == "no" || input == "n"
       return
+    else
+      menu
     end
+break 
+
 
   end
+
+
+
+
 
 
   def create_tweet
