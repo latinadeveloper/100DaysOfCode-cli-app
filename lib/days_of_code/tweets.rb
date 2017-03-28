@@ -31,7 +31,6 @@ attr_accessor :screen_name, :location, :created_at, :text  #datauserid???
 
 
 
-
 end
 
 

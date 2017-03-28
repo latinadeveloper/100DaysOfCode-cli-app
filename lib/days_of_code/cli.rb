@@ -15,6 +15,8 @@ class DaysOfCode::CLI
       puts "1. For the latest 15 tweets."
       puts "2. Request a number of recent users."
       puts "3. To refresh latest tweets."
+      # puts "4. Request all since the challenge started"
+      #puts " Rank of users have the most tweets"
       puts "Type exit to end program."
       print ":".colorize(:color => :black, :background => :yellow, :mode => :blink)
         input = gets.strip
@@ -52,7 +54,10 @@ class DaysOfCode::CLI
 
 
 
+def all_tweets
 
+
+end
 
 
   def create_tweet
