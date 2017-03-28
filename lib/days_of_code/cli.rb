@@ -3,6 +3,7 @@ class DaysOfCode::CLI
   def call
     create_tweet
     menu
+
   end
 
   def menu
@@ -12,10 +13,10 @@ class DaysOfCode::CLI
       puts "Welcome to 100 Days Of Code Stats"
       puts "Enter number for selection."
       puts "   "
-      puts "1. For the latest 15 tweets."
+      puts "1. For the latest 15 0tweets."
       puts "2. Request a number of recent users."
       puts "3. To refresh latest tweets."
-      # puts "4. Request all since the challenge started"
+      # puts "4. Request all since the challenge started"  #100daysofcode
       #puts " Rank of users have the most tweets"
       puts "Type exit to end program."
       print ":".colorize(:color => :black, :background => :yellow, :mode => :blink)
@@ -53,7 +54,10 @@ class DaysOfCode::CLI
   end # end menu
 
 
-
+  def create_get_more_tweets
+    tweet = DaysOfCode::Twitter.new.get_more_tweets
+    DaysOfCode::Tweets.create_from_tweet(tweet)
+  end
 
 
 
@@ -64,8 +68,8 @@ class DaysOfCode::CLI
 
 
   def latest_15_tweets
-    puts "                   The latest 15 tweets                  ".colorize(:color => :black, :background => :magenta, :mode => :bold)
-    DaysOfCode::s.all.each.with_index do |tweet, index|
+    puts "- - - - - - - The latest 15 tweets - - - - - - -".colorize(:color => :black, :background => :magenta, :mode => :bold)
+    DaysOfCode::Tweets.all[0...15].each.with_index do |tweet, index|
        puts "#{index + 1}".colorize(:light_blue) + " #{tweet.text}"
      end
   end
@@ -75,7 +79,6 @@ class DaysOfCode::CLI
     abc_array = DaysOfCode::Tweets.all[0...request].collect do |tweet|
       tweet.screen_name.downcase
     end
-
 
     abc_array.sort.each do |abc|
       puts abc

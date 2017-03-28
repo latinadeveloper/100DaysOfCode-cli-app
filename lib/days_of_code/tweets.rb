@@ -2,7 +2,6 @@
 class DaysOfCode::Tweets
 attr_accessor :screen_name, :location, :created_at, :text  #datauserid???
 
-
   @@all_tweets = [ ]
 
   def initialize(tweet_hash)
@@ -14,11 +13,13 @@ attr_accessor :screen_name, :location, :created_at, :text  #datauserid???
     @created_at = tweet_hash["created_at"]
   end
 
-  def self.create_from_tweet(tweet_array)
+  def self.create_from_tweet(tweet_array) # [ {TH}, {TH}, ....]
     tweet_array.each do |tweet_hash|
       self.new(tweet_hash)
-    end
+    end #[]
   end
+
+
 
   def self.all
     @@all_tweets
