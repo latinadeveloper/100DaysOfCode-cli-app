@@ -1,7 +1,7 @@
 class DaysOfCode::CLI
 
   def call
-
+    create_tweet
     menu
 
   end
@@ -11,6 +11,7 @@ class DaysOfCode::CLI
     loop do
       puts "----- Menu-----"
       puts "Welcome to 100 Days Of Code Stats"
+      puts "we have #{DaysOfCode::Tweets.all.count} tweets"
       puts "Enter number for selection."
       puts "   "
       puts "1. For the latest 15 tweets."   #get_twitter
@@ -54,22 +55,22 @@ class DaysOfCode::CLI
   end # end menu
 
 
-  def create_get_more_tweets
+  def create_tweet
     tweet = DaysOfCode::Twitter.new.get_more_tweets
     DaysOfCode::Tweets.create_from_tweet(tweet)
   end
 
 
 
-  def create_tweet
-    tweet = DaysOfCode::Twitter.new.get_twitter["statuses"]
-    DaysOfCode::Tweets.create_from_tweet(tweet)
-  end
+  # def create_tweet
+  #   tweet = DaysOfCode::Twitter.new.get_twitter["statuses"]
+  #   DaysOfCode::Tweets.create_from_tweet(tweet)
+  # end
 
 
   def latest_15_tweets
     puts "- - - - - - - The latest 15 tweets - - - - - - -".colorize(:color => :black, :background => :magenta, :mode => :bold)
-    DaysOfCode::Tweets.all[0...15].each.with_index do |tweet, index|
+    DaysOfCode::Tweets.all.each.with_index do |tweet, index| #[0...15]
        puts "#{index + 1}".colorize(:light_blue) + " #{tweet.text}"
      end
   end

@@ -10,7 +10,7 @@
 
     def get_twitter
       # gets the request back from twitter
-      response = consumer.request(:get, "https://api.twitter.com/1.1/search/tweets.json?q=%23100DaysOfCode")
+      response = consumer.request(:get, "https://api.twitter.com/1.1/search/tweets.json?result_type=recent&q=%23100DaysOfCode")
       result = JSON.parse(response.body) # <-- response back from twitter
     end  # { "statuses": [ {TH}, {TH}, ....], "search_metadata": {...} }
 
@@ -19,13 +19,15 @@
       search_result = get_twitter
       # { "statuses": [ {TH}, {TH}, ....], "search_metadata": {...} }
 
+      @additional_searches += search_result["statuses"]
 
       3.times do
-        @additional_searches += search_result["statuses"]   #== @additional_searches = ["statuses"]*** using += vs <<   << created array in away [[][]]
+           #== @additional_searches = ["statuses"]*** using += vs <<   << created array in away [[][]]
         #^ [ {TH}, {TH}, ....]
         next_search = search_result["search_metadata"]["next_results"]
         search_response = consumer.request(:get, "https://api.twitter.com/1.1/search/tweets.json" + next_search)
         search_result = JSON.parse(search_response.body)
+        @additional_searches += search_result["statuses"]
       end
       @additional_searches
     end # [ {TH}, {TH}, ....]
