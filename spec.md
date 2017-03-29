@@ -12,13 +12,13 @@ Specs:
         count - changed the default to retrieve more than 15 tweets
 
 
-- [ ] Implement both list and detail views
+- [X ] Implement both list and detail views
       List views were used in:
       Menu option 1 shows a list of the most recent 15 tweets.
-      Menu option 2 shows a list of the user's screen name in alphabetical order.
-        The user is asked how many users they want to see.
+
+      Menu option 2 shows a list of the user's screen name in alphabetical order. The user is asked how many users they want to see.
 
       Detail views are seen in:
-      Menu option 4. The 20 users with the most tweets using the
-        hashtag are seen here. Multiple requests to twitter were made here to gather a
-        larger sample of data.
+      Menu option 4. The 20 users with the most tweets using the hashtag are seen here. Multiple requests to twitter were made here to gather a larger sample of data.
+
+      Menu option 5 allows the user to enter a twitter username to view their first tweet in the data retrieved from Twitter, as well as the time it was created.

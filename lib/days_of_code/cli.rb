@@ -101,7 +101,8 @@ class DaysOfCode::CLI
     end
 
     puts "The username #{request_detail}\'s first tweet in our file is "
-
+    puts detail_user_tweet[-1].text.colorize(:light_blue)
+    puts "This tweet was created on #{detail_user_tweet[-1].time_string}"
 
   end
 
