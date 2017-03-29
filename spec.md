@@ -2,7 +2,7 @@
 
 Specs:
 - [x] Have a CLI for interfacing with the application
-- [ ] Pull data from an external source
+- [x ] Pull data from an external source
       This project uses the Twitter Search REST API to retrieve tweets with a
       hashtag #100daysofcode https://dev.twitter.com/rest/public/search
 

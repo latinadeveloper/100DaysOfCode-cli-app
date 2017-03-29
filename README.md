@@ -38,7 +38,7 @@ You can also run `bin/console` for an interactive prompt.
 This is currently not available in a gem for the time being. Document will be updated when it is.
 
 ## Contributing
-Bug reports and pull requests are welcome on GitHub at [latina developer github]  (https://github.com/latinadeveloper/100DaysOfCode-cli-app). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at  https://github.com/latinadeveloper/100DaysOfCode-cli-app. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
