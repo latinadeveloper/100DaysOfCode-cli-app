@@ -30,6 +30,9 @@ attr_accessor :screen_name, :location, :created_at, :text  ### atauserid???
 
   end
 
+  def time_string
+    Time.parse(created_at).strftime("%m-%e-%y %l:%M %p")
+  end
 
 
 end

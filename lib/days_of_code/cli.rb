@@ -91,11 +91,18 @@ class DaysOfCode::CLI
 
 
   # puts request_detail.inspect
-  def search_user_detail(request_detail)  
-   detail_user_tweet =DaysOfCode::Tweets.all.find_all do |tweet|
+  def search_user_detail(request_detail)
+    detail_user_tweet =DaysOfCode::Tweets.all.find_all do |tweet|
      tweet.screen_name.downcase == request_detail.downcase
     end
-   puts  detail_user_tweet.length
+    if detail_user_tweet == []
+      puts "username not in our file".colorize(:red)
+      return
+    end
+
+    puts "The username #{request_detail}\'s first tweet in our file is "
+
+
   end
 
 
@@ -123,20 +130,20 @@ class DaysOfCode::CLI
   end
 
   def time_tweet_end
-    Time.parse(DaysOfCode::Tweets.all[0].created_at).strftime("%m-%e-%y %l:%M %p")
+    DaysOfCode::Tweets.all[0].time_string
     ### http://www.foragoodstrftime.com/
 
   end
 
   def time_tweet_start
-    Time.parse(DaysOfCode::Tweets.all[-1].created_at).strftime("%m-%e-%y %l:%M %p")
+    DaysOfCode::Tweets.all[-1].time_string
   end
 
   def yes_or_no
     puts "   "
-    puts " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~".colorize(:magenta)
+    puts " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~".colorize(:blue)
     loop do
-      puts " Do you want another option?".colorize(:blue)
+      puts " Do you want another option?"
       input = gets.downcase.strip
       if input == "no" || input == "n"
         return false

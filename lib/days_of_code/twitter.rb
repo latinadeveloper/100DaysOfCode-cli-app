@@ -21,7 +21,7 @@ class DaysOfCode::Twitter
 
     @additional_searches += search_result["statuses"]
 
-    30.times do
+    40.times do
          ###= @additional_searches = ["statuses"]*** using += vs <<   << created array in away [[][]]
       ###^ [ {TH}, {TH}, ....]
       next_search = search_result["search_metadata"]["next_results"]
