@@ -13,16 +13,17 @@ class DaysOfCode::CLI
   def menu
 
     loop do
-      puts "----- Menu-----"
+      puts "  "
+      puts "------- MENU ------".colorize(:blue)
       puts "Welcome to 100 Days Of Code Stats"
-      puts "we have #{DaysOfCode::Tweets.all.count} tweets"
+      puts "We have #{DaysOfCode::Tweets.all.count} tweets"
       puts "Enter number for selection."
       puts "   "
       puts "1. For the latest 15 tweets."   #get_twitter
       puts "2. To view a list of recent users in alphabetical order."
       puts "3. To clear current list and refresh."
       puts "4. Top 20 users with the most tweets using \#100DaysOfCode hashtag."
-      puts "Type exit to end program."
+      puts "   Type exit to end program.".colorize(:red)
       print ":".colorize(:color => :black, :background => :yellow, :mode => :blink)
         input = gets.strip
 
@@ -119,9 +120,9 @@ class DaysOfCode::CLI
 
   def yes_or_no
     puts "   "
-    puts " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    puts " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~".colorize(:magenta)
     loop do
-      puts " Do you want another option?"
+      puts " Do you want another option?".colorize(:blue)
       input = gets.downcase.strip
       if input == "no" || input == "n"
         return false
