@@ -1,7 +1,11 @@
 class DaysOfCode::CLI
 
   def call
-    fetch_then_saves_tweets
+    if File.exist?("tweets.json")
+      loads_saved_tweets
+    else
+      fetch_then_saves_tweets
+    end
     menu
 
   end
@@ -66,6 +70,10 @@ class DaysOfCode::CLI
     DaysOfCode::Tweets.all.each do |tweet|
       counts[tweet.screen_name] += 1
     end
+     counts.sort_by{|key, val| val}.reverse[0...20].each do |screen_name, total_tweets|
+        puts "#{screen_name}" +  " #{total_tweets}"
+      end
+
 
   end
 
