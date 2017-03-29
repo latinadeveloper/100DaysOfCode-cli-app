@@ -7,7 +7,6 @@ class DaysOfCode::CLI
       fetch_then_saves_tweets
     end
     menu
-
   end
 
   def menu
@@ -17,6 +16,7 @@ class DaysOfCode::CLI
       puts "------- MENU ------".colorize(:blue)
       puts "Welcome to 100 Days Of Code Stats"
       puts "We have #{DaysOfCode::Tweets.all.count} tweets"
+      puts "Tweet range from " + time_tweet_start + " to " + time_tweet_end
       puts "Enter number for selection."
       puts "   "
       puts "1. For the latest 15 tweets."   #get_twitter
@@ -116,8 +116,6 @@ class DaysOfCode::CLI
   end
 
 
-
-
   def yes_or_no
     puts "   "
     puts " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~".colorize(:magenta)
@@ -137,6 +135,16 @@ class DaysOfCode::CLI
   end
 
 
+
+  def time_tweet_end
+    Time.parse(DaysOfCode::Tweets.all[0].created_at).strftime("%m-%e-%y %l:%M %p")
+    ### http://www.foragoodstrftime.com/
+
+  end
+
+  def time_tweet_start
+    Time.parse(DaysOfCode::Tweets.all[-1].created_at).strftime("%m-%e-%y %l:%M %p")
+  end
 
     ###used before iteriating tweets method created
     # def create_tweet

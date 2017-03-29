@@ -16,11 +16,13 @@ after how many days are the people starting no longer tweet about their progress
 I created this cli to explore those questions.
 
 ## Installation
+Go to the directory and click clone or download.
 
 ## Twitter Account
 You must create a twitter account at [Twitter Apps] (https://apps.twitter.com/) for this to work.
 Create a file named doNotCommit.rb under the config file directory.
 This file will be used to save the consumer key which you will want to keep to yourself.
+*do not commit this file so you can keep your keys secure*
 
 CONSUMER_KEY = *your consumer key here as a string*
 CONSUMER_SECRET = *your consumer secret here as a string*
@@ -28,7 +30,7 @@ CONSUMER_SECRET = *your consumer secret here as a string*
 
 
 ## Usage
-
+Run: 100Days from your terminal  `bin/100days`
 
 ## Development
 
