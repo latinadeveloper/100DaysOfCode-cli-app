@@ -16,12 +16,12 @@ class DaysOfCode::Twitter
   end ### { "statuses": [ {tweet hash}, {}, ....], "search_metadata": {...} }
 
   def get_more_tweets
-    @additional_searches = []
+    @tweet_hash_search = []
     search_result = get_twitter
     ### { "statuses": [ {TH}, {TH}, ....], "search_metadata": {...} }
     ### https://dev.twitter.com/rest/public/timelines
     ### https://dev.twitter.com/rest/reference/get/search/tweets
-    @additional_searches += search_result['statuses']
+    @tweet_hash_search += search_result['statuses']
 
     2.times do
       ###= @additional_searches = ["statuses"]*** using += vs <<   << created array in away [[][]]
@@ -29,20 +29,20 @@ class DaysOfCode::Twitter
       next_search = search_result['search_metadata']['next_results']
       search_response = consumer.request(:get, 'https://api.twitter.com/1.1/search/tweets.json' + next_search)
       search_result = JSON.parse(search_response.body)
-      @additional_searches += search_result['statuses']
+      @tweet_hash_search += search_result['statuses']
     end
-    @additional_searches
+    @tweet_hash_search
   end ### [ {TH}, {TH}, ....]
 
   def save
     File.open('tweets.json', 'w') do |file|
-      file.write(@additional_searches.to_json)
+      file.write(@tweet_hash_search.to_json)
     end
   end
 
   def open
     file = File.read('tweets.json')
-    @additional_searches = JSON.parse(file)
+    @tweet_hash_search = JSON.parse(file)
   end
 
   # def file?
