@@ -31,7 +31,7 @@ class DaysOfCode::Twitter
       search_result = JSON.parse(search_response.body)
       @tweet_hash_search += search_result['statuses']
     end
-    @tweet_hash_search
+    @tweet_hash_search  ### returns every tweet tht
   end ### [ {TH}, {TH}, ....]
 
   def save
@@ -45,7 +45,5 @@ class DaysOfCode::Twitter
     @tweet_hash_search = JSON.parse(file)
   end
 
-  # def file?
-  #   File.exist?("tweets.json")
-  # end
+
 end ### end for class

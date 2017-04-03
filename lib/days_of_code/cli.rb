@@ -102,17 +102,17 @@ class DaysOfCode::CLI
 
   def fetch_then_saves_tweets
     twitter = DaysOfCode::Twitter.new
-    tweet = twitter.get_more_tweets 
+    tweet_hash_search = twitter.get_more_tweets
+    twitter.save
 
-    DaysOfCode::Tweet.create_from_tweet(tweet)
-    twitter.save # ##calls method to save to tweets.json
+    DaysOfCode::Tweet.create_from_tweet(tweet_hash_search )
   end
 
   def loads_saved_tweets
     twitter = DaysOfCode::Twitter.new
-    tweet_hash = twitter.open
+    tweet_hash_search = twitter.open
 
-    DaysOfCode::Tweet.create_from_tweet(tweet)
+    DaysOfCode::Tweet.create_from_tweet(tweet_hash_search )
   end
 
   def latest_15_tweets
@@ -148,9 +148,5 @@ class DaysOfCode::CLI
       end
     end
   end
-  # ##used before iteriating tweets method created
-  # def create_tweet
-  #   tweet = DaysOfCode::Twitter.new.get_twitter["statuses"]
-  #   DaysOfCode::Tweet.create_from_tweet(tweet)
-  # end
-end
+
+end ### end of class
