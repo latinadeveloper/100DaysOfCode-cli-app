@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+### ^ tells termindal that this is a file that should be executed with Ruby
 require_relative '../config/environment'
 
 DaysOfCode::CLI.new.call

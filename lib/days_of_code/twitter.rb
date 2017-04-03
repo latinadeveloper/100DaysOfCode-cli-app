@@ -3,22 +3,24 @@ class DaysOfCode::Twitter
   attr_reader :consumer
 
   ### https://apps.twitter.com/
+  ### https://dev.twitter.com/oauth/overview/single-user   how to connect as a single user to twitter
   def initialize(consumer_key = CONSUMER_KEY, consumer_secret = CONSUMER_SECRET) ### defaults from doNotCommit.rb
     @consumer = OAuth::Consumer.new(consumer_key, consumer_secret, site: 'https://api.twitter.com', scheme: :header)
     # consumer is to read only
   end
 
   def get_twitter
-    ### gets the request back from twitter
+    ### gets the request back from twitter https://dev.twitter.com/rest/public/search   build a query
     response = consumer.request(:get, 'https://api.twitter.com/1.1/search/tweets.json?count=100&result_type=recent&q=%23100DaysOfCode')
     result = JSON.parse(response.body) ### <-- response back from twitter
-  end ### { "statuses": [ {TH}, {TH}, ....], "search_metadata": {...} }
+  end ### { "statuses": [ {tweet hash}, {}, ....], "search_metadata": {...} }
 
   def get_more_tweets
     @additional_searches = []
     search_result = get_twitter
     ### { "statuses": [ {TH}, {TH}, ....], "search_metadata": {...} }
-
+    ### https://dev.twitter.com/rest/public/timelines
+    ### https://dev.twitter.com/rest/reference/get/search/tweets
     @additional_searches += search_result['statuses']
 
     2.times do
@@ -47,6 +49,3 @@ class DaysOfCode::Twitter
   #   File.exist?("tweets.json")
   # end
 end ### end for class
-
-### https://dev.twitter.com/oauth/overview/single-user   how to connect as a single user to twitter
-### https://dev.twitter.com/rest/public/search   build a query

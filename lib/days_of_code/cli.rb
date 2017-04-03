@@ -1,5 +1,6 @@
 class DaysOfCode::CLI
-  def call
+
+  def call  ### loading the tweets
     if File.exist?('tweets.json')
       loads_saved_tweets
     else
@@ -13,7 +14,7 @@ class DaysOfCode::CLI
       puts '  '
       puts '------- MENU ------'.colorize(:light_blue)
       puts "Welcome to \#100DaysOfCode Stats"
-      puts "We have #{DaysOfCode::Tweets.all.count} tweets"
+      puts "We have #{DaysOfCode::Tweet.all.count} tweets"
       puts 'Tweets range from ' + time_tweet_start + ' to ' + time_tweet_end
       puts 'Enter number for selection.'
       puts '   '
@@ -26,22 +27,20 @@ class DaysOfCode::CLI
       print ':'.colorize(color: :black, background: :yellow, mode: :blink)
       input = gets.strip
 
-      optional_choice = true
-
       case input
 
       when '1'
         latest_15_tweets
 
       when '2'
-        puts "How many users do you want to see from 1 to #{DaysOfCode::Tweets.all.count}?"
+        puts "How many users do you want to see from 1 to #{DaysOfCode::Tweet.all.count}?"
         request = gets.to_i
         recent_users(request)
 
       when '3'
-        DaysOfCode::Tweets.clear_tweets
+        DaysOfCode::Tweet.clear_tweets
         fetch_then_saves_tweets
-        puts "Downloaded #{DaysOfCode::Tweets.all.count} recent tweets."
+        puts "Downloaded #{DaysOfCode::Tweet.all.count} recent tweets."
 
       when '4'
         stats_user_tweets_count
@@ -54,20 +53,20 @@ class DaysOfCode::CLI
         return
       else
         puts 'Invalid choice'
-        optional_choice = false
       end
 
-      if optional_choice && !yes_or_no
+      if  !yes_or_no
         return ### ends
       end
+
     end ### end of loop
   end ### end menu
 
   def stats_user_tweets_count # ##count for each identical element
-    DaysOfCode::Tweets.all
+    DaysOfCode::Tweet.all
     counts = Hash.new(0)
 
-    DaysOfCode::Tweets.all.each do |tweet|
+    DaysOfCode::Tweet.all.each do |tweet|
       counts[tweet.screen_name] += 1
     end
     counts.sort_by { |_key, val| val }.reverse[0...20].each do |screen_name, total_tweets|
@@ -77,7 +76,7 @@ class DaysOfCode::CLI
 
   def recent_users(request)
     puts '--- Recent users ---'.colorize(color: :black, background: :magenta, mode: :bold)
-    abc_array = DaysOfCode::Tweets.all[0...request].collect do |tweet|
+    abc_array = DaysOfCode::Tweet.all[0...request].collect do |tweet|
       tweet.screen_name.downcase
     end
 
@@ -88,7 +87,7 @@ class DaysOfCode::CLI
 
   # puts request_detail.inspect
   def search_user_detail(request_detail)
-    detail_user_tweet = DaysOfCode::Tweets.all.find_all do |tweet|
+    detail_user_tweet = DaysOfCode::Tweet.all.find_all do |tweet|
       tweet.screen_name.casecmp(request_detail.downcase).zero?
     end
     if detail_user_tweet == []
@@ -103,33 +102,33 @@ class DaysOfCode::CLI
 
   def fetch_then_saves_tweets
     twitter = DaysOfCode::Twitter.new
-    tweet = twitter.get_more_tweets
+    tweet = twitter.get_more_tweets 
 
-    DaysOfCode::Tweets.create_from_tweet(tweet)
+    DaysOfCode::Tweet.create_from_tweet(tweet)
     twitter.save # ##calls method to save to tweets.json
   end
 
   def loads_saved_tweets
     twitter = DaysOfCode::Twitter.new
-    tweet = twitter.open
+    tweet_hash = twitter.open
 
-    DaysOfCode::Tweets.create_from_tweet(tweet)
+    DaysOfCode::Tweet.create_from_tweet(tweet)
   end
 
   def latest_15_tweets
     puts '- - - - - - - The latest 15 tweets - - - - - - -'.colorize(color: :black, background: :magenta, mode: :bold)
-    DaysOfCode::Tweets.all[0...15].each.with_index do |tweet, index|
+    DaysOfCode::Tweet.all[0...15].each.with_index do |tweet, index|
       puts (index + 1).to_s.colorize(:light_blue) + " #{tweet.text}"
     end
   end
 
   def time_tweet_end
-    DaysOfCode::Tweets.all[0].time_string
+    DaysOfCode::Tweet.all[0].time_string
     ### http://www.foragoodstrftime.com/
   end
 
   def time_tweet_start
-    DaysOfCode::Tweets.all[-1].time_string
+    DaysOfCode::Tweet.all[-1].time_string
   end
 
   def yes_or_no
@@ -152,6 +151,6 @@ class DaysOfCode::CLI
   # ##used before iteriating tweets method created
   # def create_tweet
   #   tweet = DaysOfCode::Twitter.new.get_twitter["statuses"]
-  #   DaysOfCode::Tweets.create_from_tweet(tweet)
+  #   DaysOfCode::Tweet.create_from_tweet(tweet)
   # end
 end
