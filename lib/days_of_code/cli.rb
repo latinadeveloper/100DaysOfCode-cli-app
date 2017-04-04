@@ -21,7 +21,7 @@ class DaysOfCode::CLI
       puts '1. For the latest 15 tweets.' # get_twitter
       puts '2. To view a list of recent users in alphabetical order.'
       puts '3. To clear current list and refresh.'
-      puts "4. Top 20 users with the most tweets using \#100DaysOfCode hashtag."
+      puts "4. Top 20 users with the most tweets using \#100DaysOfCode hashtag from our current data."
       puts '5. View details on a user name.'
       puts '   Type exit to end program.'.colorize(:red)
       print ':'.colorize(color: :black, background: :yellow, mode: :blink)
@@ -63,13 +63,12 @@ class DaysOfCode::CLI
   end ### end menu
 
   def stats_user_tweets_count # ##count for each identical element
-    DaysOfCode::Tweet.all
-    counts = Hash.new(0)
+    counts = Hash.new(0)   #0 default in case it doesnt have a value
 
     DaysOfCode::Tweet.all.each do |tweet|
       counts[tweet.screen_name] += 1
     end
-    counts.sort_by { |_key, val| val }.reverse[0...20].each do |screen_name, total_tweets|
+    counts.sort_by { |key, val| val }.reverse[0...20].each do |screen_name, total_tweets|  ###reverse due to high to low
       puts screen_name.to_s + " #{total_tweets}"
     end
   end
@@ -80,7 +79,7 @@ class DaysOfCode::CLI
       tweet.screen_name.downcase
     end
 
-    abc_array.sort.each do |abc|
+    abc_array.uniq.sort.each do |abc|
       puts abc
     end
   end
@@ -88,7 +87,7 @@ class DaysOfCode::CLI
   # puts request_detail.inspect
   def search_user_detail(request_detail)
     detail_user_tweet = DaysOfCode::Tweet.all.find_all do |tweet|
-      tweet.screen_name.casecmp(request_detail.downcase).zero?
+      tweet.screen_name.downcase == request_detail.downcase
     end
     if detail_user_tweet == []
       puts 'username not in our file'.colorize(:red)
